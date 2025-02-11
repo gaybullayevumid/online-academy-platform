@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="POST" action="">
+    {% csrf_token %}
+    
+    <div class="phone">93 085 0955</div>
+
+    <div class="address">Navoiy</div>
+
+    <label for="input-number">Enter Number:</label>
+    <input type="number" id="input-number" name="input_number" required><br>
+
+    <label for="petrol-type">Select Petrol Type:</label>
+    <ul id="petrol-list">
+        <li>
+            <input type="radio" id="petrol-80" name="petrol_type" value="80" checked>
+            <label for="petrol-80">80</label>
+        </li>
+        <li>
+            <input type="radio" id="petrol-91" name="petrol_type" value="91">
+            <label for="petrol-91">91/92</label>
+        </li>
+        <li>
+            <input type="radio" id="petrol-95" name="petrol_type" value="95">
+            <label for="petrol-95">95</label>
+        </li>
+    </ul>
+
+    <button type="submit">OK</button>
+</form>
+
+{% endblock content %}
