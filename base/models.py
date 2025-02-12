@@ -6,6 +6,7 @@ class Customer(models.Model):
     phone_number = models.CharField(max_length=15)
     full_name = models.CharField(max_length=100)
     address = models.TextField()
+    total_points = models.FloatField(default=0)  # Yangi maydon
 
     def __str__(self):
         return self.full_name
@@ -21,15 +22,22 @@ class FuelPurchase(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     petrol_type = models.IntegerField(choices=PETROL_TYPES)
     litres = models.FloatField()
-    total_points = models.FloatField(editable=False)
 
     def save(self, *args, **kwargs):
+        # Ballarni hisoblash
         if self.petrol_type == 80:
-            self.total_points = self.litres * 0.1
+            points = self.litres * 0.1
         elif self.petrol_type in [91, 92]:
-            self.total_points = self.litres * 0.2
+            points = self.litres * 0.2
         elif self.petrol_type == 95:
-            self.total_points = self.litres * 0.3
+            points = self.litres * 0.3
+        else:
+            points = 0
+
+        # Customerni total_points maydonini yangilash
+        self.customer.total_points += points
+        self.customer.save()
+
         super().save(*args, **kwargs)
 
     def __str__(self):

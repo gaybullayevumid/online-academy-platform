@@ -6,7 +6,9 @@ from .forms import FuelPurchaseForm
 
 def index(request):
     customers = Customer.objects.all()
-    return render(request, 'index.html', {'customers': customers})
+    return render(request, 'index.html', {
+        'customers': customers,
+    })
 
 def purchase_fuel(request):
     if request.method == 'POST':

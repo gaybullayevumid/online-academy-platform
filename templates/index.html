@@ -8,9 +8,14 @@
     <h1>Customers</h1>
     <ul>
         {% for customer in customers %}
-            <li>{{ customer.full_name }} - {{ customer.phone_number }} - {{customer.}}</li>
+            <li>
+                {{ customer.full_name }} - {{ customer.phone_number }}
+                <br>
+                Total Points: {{ customer.total_points }}  <!-- Ballarni ko'rsatish -->
+            </li>
         {% endfor %}
     </ul>
+
     <a href="{% url 'purchase_fuel' %}">Purchase Fuel</a>
 </body>
 </html>
