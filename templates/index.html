@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers</title>
+</head>
+<body>
+    <h1>Customers</h1>
+    <ul>
+        {% for customer in customers %}
+            <li>{{ customer.full_name }} - {{ customer.phone_number }} - {{customer.}}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'purchase_fuel' %}">Purchase Fuel</a>
+</body>
+</html>

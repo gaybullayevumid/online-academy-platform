@@ -1,8 +1,12 @@
+# fuel_app/admin.py
+
 from django.contrib import admin
-from .models import Nfc
+from .models import Customer, FuelPurchase
 
-class NfcAdmin(admin.ModelAdmin):
-    list_display = ('phone', 'address', 'score', 'petrol_type')  # Admin panelida ko'rsatiladigan ustunlar
-    search_fields = ('phone', 'address')  # Telefon va manzil bo'yicha qidirish
+@admin.register(Customer)
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'phone_number', 'address')
 
-admin.site.register(Nfc, NfcAdmin)
+@admin.register(FuelPurchase)
+class FuelPurchaseAdmin(admin.ModelAdmin):
+    list_display = ('customer', 'petrol_type', 'litres', 'total_points')
