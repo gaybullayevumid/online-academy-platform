@@ -1,21 +1,39 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Customers</title>
-</head>
-<body>
-    <h1>Customers</h1>
-    <ul>
-        {% for customer in customers %}
-            <li>
-                {{ customer.full_name }} - {{ customer.phone_number }}
-                <br>
-                Total Points: {{ customer.total_points }}  <!-- Ballarni ko'rsatish -->
-            </li>
-        {% endfor %}
-    </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fuel Purchase System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Fuel Purchase System</h1>
 
-    <a href="{% url 'purchase_fuel' %}">Purchase Fuel</a>
-</body>
+      <!-- Mijozlar ro'yxati -->
+      <div class="customer-list">
+        <h2>Customers</h2>
+        <ul>
+          {% for customer in customers %}
+          <li>
+            {{ customer.full_name }} <br />
+            {{ customer.phone_number }}
+            <br />
+            <strong>Total Points:</strong> {{ customer.total_points }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Yoqilg'i sotib olish formasi -->
+      <div class="purchase-form">
+        <h2>Purchase Fuel</h2>
+        <form method="post">
+          {% csrf_token %} {{ form.as_p }}
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>
