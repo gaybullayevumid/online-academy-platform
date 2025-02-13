@@ -10,17 +10,17 @@ class CustomerAdmin(admin.ModelAdmin):
     list_filter = ('total_points', 'unique_id', 'phone_number', 'full_name')
 
     def save_model(self, request, obj, form, change):
-        if self.check_duplicate_full_name(request, obj) or self.check_duplicate_phone_number(request, obj):
+        if self.name(request, obj) or self.telefon(request, obj):
             return
         super().save_model(request, obj, form, change)
 
-    def check_duplicate_full_name(self, request, obj):
+    def name(self, request, obj):
         if Customer.objects.filter(full_name=obj.full_name).exists():
             messages.error(request, 'Ushbu ism familiya bilan avval foydalanuvchi ro\'yxatdan  o\'tkazilgan.')
             return True
         return False
 
-    def check_duplicate_phone_number(self, request, obj):
+    def telefon(self, request, obj):
         if Customer.objects.filter(phone_number=obj.phone_number).exists():
             messages.error(request, 'Ushbu telefon raqam avval ro\'yxatdan o\'tkazilgan.')
             return True
