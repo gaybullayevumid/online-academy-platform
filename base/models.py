@@ -1,5 +1,14 @@
 from django.db import models
 
+
+PETROL_TYPES = [
+        (80, '80'),
+        (91, '91'),
+        (92, '92'),
+        (95, '95'),
+    ]
+
+
 class Customer(models.Model):
     phone_number = models.CharField(max_length=15)
     full_name = models.CharField(max_length=100)
@@ -10,12 +19,7 @@ class Customer(models.Model):
         return self.full_name
 
 class FuelPurchase(models.Model):
-    PETROL_TYPES = [
-        (80, '80'),
-        (91, '91'),
-        (92, '92'),
-        (95, '95'),
-    ]
+    
 
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     petrol_type = models.IntegerField(choices=PETROL_TYPES)
