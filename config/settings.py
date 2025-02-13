@@ -39,6 +39,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin', 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -87,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'nfc',
         'USER': 'postgres',
-        'PASSWORD': '8505',
+        'PASSWORD': 'postgres', #8505
         'HOST': 'localhost',
         'PORT': '5432'
     }

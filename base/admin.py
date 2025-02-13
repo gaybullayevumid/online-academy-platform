@@ -1,13 +1,35 @@
 from django.contrib import admin
+from django.core.exceptions import ValidationError
+from django.contrib import messages
 from .models import Customer, FuelPurchase
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('full_name', 'phone_number', 'address', 'total_points')
+    list_display = ('unique_id', 'phone_number', 'full_name', 'address', 'total_points')
+    search_fields = ('unique_id', 'phone_number', 'full_name')
+    list_filter = ('total_points', 'unique_id', 'phone_number', 'full_name')
+
+    def save_model(self, request, obj, form, change):
+        if self.check_duplicate_full_name(request, obj) or self.check_duplicate_phone_number(request, obj):
+            return
+        super().save_model(request, obj, form, change)
+
+    def check_duplicate_full_name(self, request, obj):
+        if Customer.objects.filter(full_name=obj.full_name).exists():
+            messages.error(request, 'Ushbu ism familiya bilan avval foydalanuvchi ro\'yxatdan  o\'tkazilgan.')
+            return True
+        return False
+
+    def check_duplicate_phone_number(self, request, obj):
+        if Customer.objects.filter(phone_number=obj.phone_number).exists():
+            messages.error(request, 'Ushbu telefon raqam avval ro\'yxatdan o\'tkazilgan.')
+            return True
+        return False
 
 @admin.register(FuelPurchase)
 class FuelPurchaseAdmin(admin.ModelAdmin):
     list_display = ('customer', 'petrol_type', 'litres', 'get_customer_points')
+    list_filter = ('petrol_type', 'customer__full_name', 'customer__phone_number')
 
     def get_customer_points(self, obj):
         return obj.customer.total_points
