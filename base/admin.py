@@ -11,4 +11,4 @@ class FuelPurchaseAdmin(admin.ModelAdmin):
 
     def get_customer_points(self, obj):
         return obj.customer.total_points
-    get_customer_points.short_description = 'Total Points'  # Admin panelda ustun nomi
+    get_customer_points.short_description = 'Total Points'

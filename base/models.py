@@ -1,12 +1,10 @@
-# fuel_app/models.py
-
 from django.db import models
 
 class Customer(models.Model):
     phone_number = models.CharField(max_length=15)
     full_name = models.CharField(max_length=100)
     address = models.TextField()
-    total_points = models.FloatField(default=0)  # Yangi maydon
+    total_points = models.FloatField(default=0)
 
     def __str__(self):
         return self.full_name
@@ -24,7 +22,6 @@ class FuelPurchase(models.Model):
     litres = models.FloatField()
 
     def save(self, *args, **kwargs):
-        # Ballarni hisoblash
         if self.petrol_type == 80:
             points = self.litres * 0.1
         elif self.petrol_type in [91, 92]:
@@ -34,7 +31,6 @@ class FuelPurchase(models.Model):
         else:
             points = 0
 
-        # Customerni total_points maydonini yangilash
         self.customer.total_points += points
         self.customer.save()
 

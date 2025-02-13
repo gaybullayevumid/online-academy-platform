@@ -28,10 +28,12 @@ DEBUG = True
 ALLOWED_HOSTS = [ 
     'localhost',  
     '127.0.0.1', 
-    '2438-84-54-73-78.ngrok-free.app'
+    '03b7-84-54-73-78.ngrok-free.app'
     ]
 
 # 'localhost', '2438-84-54-73-78.ngrok-free.app'
+
+# AUTH_USER_MODEL = 'base.CustomUser'
 
 
 # Application definition

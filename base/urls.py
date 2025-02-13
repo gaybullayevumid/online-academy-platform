@@ -1,8 +1,7 @@
-# fuel_app/urls.py
-
 from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),  # Bitta sahifa
+    path('', views.login_view, name='login'),
+    path('login/', views.index, name='index'),
 ]
