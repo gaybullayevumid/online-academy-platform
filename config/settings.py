@@ -16,12 +16,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    "apps.courses.apps.CoursesConfig",
-    "apps.users.apps.UsersConfig",
-    "apps.enrollments.apps.EnrollmentsConfig",
-    "apps.payments.apps.PaymentsConfig",
-    "apps.quizzes.apps.QuizzesConfig",
-    "apps.certificates.apps.CertificatesConfig",
+    "apps.courses",
+    "apps.users",
+    "apps.enrollments",
+    "apps.payments",
+    "apps.quizzes",
+    "apps.certificates",
 ]
 
 MIDDLEWARE = [
