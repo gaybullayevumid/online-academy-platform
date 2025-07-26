@@ -1,10 +1,14 @@
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% tailwind_css %}
     <meta charset="UTF-8">
     <title>{% block title %}Online Academy Platform{% endblock %}</title>
+    <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
 </head>
 <body>
+    {% include 'includes/navbar.html' %}
     {% block content %}{% endblock %}
 </body>
 </html>
