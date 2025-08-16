@@ -1,10 +1,15 @@
+<script setup lang="ts">
+import { RouterLink } from 'vue-router';
+
+</script>
+
 <template>
 <nav>
     <ul>
-        <li><router-link to='/'>Home</router-link></li>
-        <li><router-link to="/courses">Courses</router-link></li>
-        <li><a href="">Quiz</a></li>
-        <li><a href="">Dashboard</a></li>
+        <li><RouterLink to="/">Home</RouterLink></li>
+        <li><RouterLink to="/courses">Courses</RouterLink></li>
+        <li><RouterLink to="/quiz">Quiz</RouterLink></li>
+        <li><RouterLink to="/dashboard">Dashboard</RouterLink></li>
         <!-- <li><a href=""></a></li> -->
     </ul>
 </nav>
