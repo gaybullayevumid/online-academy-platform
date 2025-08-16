@@ -1,5 +1,6 @@
 # Online Academy Platform
 
+```markdown
 online_academy/
 ├── backend/                # Django REST qismi
 │   ├── academy/            # Main project config (settings, urls, wsgi, asgi)
@@ -50,3 +51,4 @@ online_academy/
 ├── docker-compose.yml      # Agar Docker ishlatsangiz
 ├── .env                    # Environment variables
 └── README.md
+```
